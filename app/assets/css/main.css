@@ -1,2 +1,8 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+.required::after {
+  margin-inline-start: 0.125rem;
+  color: var(--ui-error);
+  content: "*";
+}
