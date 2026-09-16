@@ -2,9 +2,26 @@
 import * as z from "zod";
 import type { FormSubmitEvent } from "@nuxt/ui";
 
-const toast = useToast();
+definePageMeta({
+  layout: false,
+});
+
+const { showError, showSuccess } = useCToast();
 const { t } = useI18n();
 const router = useRouter();
+const route = useRoute();
+const loginReq = useLoginService();
+const { setTokens } = useAuth();
+
+function getRedirectPath() {
+  const redirect = route.query.redirect;
+
+  return typeof redirect === "string" &&
+    redirect.startsWith("/") &&
+    !redirect.startsWith("//")
+    ? redirect
+    : "/";
+}
 
 function createSchema() {
   return z.object({
@@ -29,12 +46,19 @@ const state = reactive<Partial<Schema>>({
 });
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  toast.add({
-    title: t("loginSuccessfully"),
-    color: "success",
-  });
-  console.log(event.data);
-  router.push("/");
+  const data = event.data;
+
+  try {
+    const tokens = await loginReq.mutateAsync({
+      email: data.email,
+      password: data.password,
+    });
+    setTokens(tokens);
+    showSuccess(t("loginSuccessfully"));
+    await router.push(getRedirectPath());
+  } catch (error: any) {
+    showError(error?.message);
+  }
 }
 </script>
 

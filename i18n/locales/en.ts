@@ -15,4 +15,6 @@ export default {
   hidePassword: "Hide password",
   submit: "Submit",
   loginSuccessfully: "Login successfully",
+  networkErrorUnableTo: "Network error. Unable to connect to the server",
+  somethingWentWrong: "Something went wrong",
 };

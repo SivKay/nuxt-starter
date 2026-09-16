@@ -1,3 +1,5 @@
+import { COOKIE_KEYS } from "~/constants";
+
 const supportedLocales = ["en", "km"] as const;
 
 type SupportedLocale = (typeof supportedLocales)[number];
@@ -7,7 +9,7 @@ function isSupportedLocale(locale: string | null | undefined): locale is Support
 }
 
 export default defineNuxtPlugin(async (nuxtApp) => {
-  const localeCookie = useCookie<SupportedLocale | null>("i18n_redirected", {
+  const localeCookie = useCookie<SupportedLocale | null>(COOKIE_KEYS.locale, {
     sameSite: "lax",
     maxAge: 60 * 60 * 24 * 365,
   });

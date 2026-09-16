@@ -15,4 +15,6 @@ export default {
   hidePassword: "លាក់ពាក្យសម្ងាត់",
   submit: "បញ្ជូន",
   loginSuccessfully: "ចូលប្រើប្រាស់ដោយជោគជ័យ",
+  networkErrorUnableTo: "មានបញ្ហាបណ្ដាញ។ មិនអាចភ្ជាប់ទៅម៉ាស៊ីនមេបានទេ",
+  somethingWentWrong: "មានបញ្ហាអ្វីមួយកើតឡើង",
 };
