@@ -3,7 +3,7 @@ const { locale, locales, setLocale } = useI18n();
 </script>
 
 <template>
-  <main class="mx-auto flex min-h-screen max-w-3xl flex-col gap-6 px-6 py-16">
+  <div>
     <div class="flex items-center gap-2" :aria-label="$t('language')">
       <UButton
         v-for="item in locales"
@@ -20,5 +20,5 @@ const { locale, locales, setLocale } = useI18n();
       <h1 class="text-3xl font-bold">{{ $t("helloWorld") }}</h1>
       <UButton>{{ $t("continue") }}</UButton>
     </div>
-  </main>
+  </div>
 </template>
