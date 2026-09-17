@@ -50,7 +50,7 @@ const clearButton = computed(() => ({
 <template>
   <UApp>
     <div class="relative min-h-dvh">
-      <div class="absolute endd-4 top-4 z-10">
+      <div class="absolute end-4 top-4 z-10">
         <SwitchLanguage />
       </div>
 
