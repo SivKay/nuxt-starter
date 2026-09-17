@@ -8,16 +8,13 @@ const {
 </script>
 
 <template>
-  <div
-    v-if="isProfilePending"
-    class="flex min-h-dvh items-center justify-center gap-3"
-  >
-    <UIcon name="i-lucide-loader-circle" class="size-6 animate-spin" />
-    <span>{{ $t("loadingProfile") }}</span>
-  </div>
+  <CLoadingOverlay
+    :show="isProfilePending"
+    :label="$t('loadingProfile')"
+  />
 
   <div
-    v-else-if="isProfileError"
+    v-if="isProfileError"
     class="flex min-h-dvh flex-col items-center justify-center gap-4 p-4 text-center"
   >
     <UIcon name="i-lucide-circle-alert" class="size-8 text-error" />
