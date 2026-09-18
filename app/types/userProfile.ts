@@ -1,4 +1,4 @@
-export interface IRole {
+export interface IUserProfileRole {
   id: number;
   code: string;
   name: string;
@@ -18,8 +18,7 @@ export interface IPermissionGroup {
 
 export interface IUserProfile {
   user: IUser;
-  role?: IRole;
-  roles?: IRole[];
+  role?: IUserProfileRole;
   permissions?: IPermissionGroup[];
 }
 

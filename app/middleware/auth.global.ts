@@ -1,15 +1,15 @@
 export default defineNuxtRouteMiddleware((to) => {
-  const { isAuthenticated } = useAuth();
+  const { hasSession } = useAuth();
   const isLoginPage = to.path === "/login";
 
-  if (!isAuthenticated.value && !isLoginPage) {
+  if (!hasSession.value && !isLoginPage) {
     return navigateTo({
       path: "/login",
       query: { redirect: to.fullPath },
     });
   }
 
-  if (isAuthenticated.value && isLoginPage) {
+  if (hasSession.value && isLoginPage) {
     return navigateTo("/");
   }
 });

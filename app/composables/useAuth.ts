@@ -25,6 +25,10 @@ export function useAuth() {
 
   const isAuthenticated = computed(() => Boolean(accessToken.value));
 
+  const hasSession = computed(() =>
+    Boolean(accessToken.value || refreshToken.value),
+  );
+
   function setTokens(tokens: ILoginResponse) {
     accessToken.value = tokens.access_token;
     refreshToken.value = tokens.refresh_token;
@@ -43,6 +47,7 @@ export function useAuth() {
     accessToken: readonly(accessToken),
     refreshToken: readonly(refreshToken),
     isAuthenticated,
+    hasSession,
     setTokens,
     clearTokens,
     logout,
