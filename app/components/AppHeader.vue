@@ -36,11 +36,13 @@ const onLogout = async () => {
     <div class="flex items-center gap-3">
       <SwitchLanguage />
 
+      <UColorModeButton variant="subtle" />
+
       <UButton
         icon="i-lucide-log-out"
         size="md"
         color="neutral"
-        variant="solid"
+        variant="subtle"
         :aria-label="$t('logout')"
         @click="openLogoutModal = true"
       />
