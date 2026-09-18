@@ -28,3 +28,11 @@ export function useProfileService() {
     queryFn: authService.getProfile,
   });
 }
+
+export function useLogoutService() {
+  const authService = AuthService();
+  return useMutation({
+    mutationKey: ["logout"],
+    mutationFn: async () => authService.logout(),
+  });
+}

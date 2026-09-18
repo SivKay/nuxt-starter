@@ -186,18 +186,7 @@ watch(
     </USidebar>
 
     <div class="flex-1 flex flex-col">
-      <!-- Header -->
-      <div
-        class="h-(--ui-header-height) shrink-0 flex items-center px-4 border-b border-default"
-      >
-        <UButton
-          icon="i-lucide-panel-left"
-          color="neutral"
-          variant="ghost"
-          aria-label="Toggle sidebar"
-          @click="open = !open"
-        />
-      </div>
+      <AppHeader @toggle-sidebar="open = !open" />
 
       <!-- Main content -->
       <main class="flex-1 p-4">

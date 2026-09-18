@@ -41,8 +41,14 @@ export default function AuthService() {
     return res.data.data;
   }
 
+  async function logout() {
+    const res = await $api.post<IBaseResponse<null>>("/merchant/auth/logout");
+    return res.data.data;
+  }
+
   return {
     login,
+    logout,
     getProfile,
     changePassword,
     refreshToken,
