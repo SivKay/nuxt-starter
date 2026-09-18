@@ -76,6 +76,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         :state="state"
         class="space-y-6"
         @submit="onSubmit"
+        :disabled="loginReq.isPending.value"
       >
         <UFormField name="email" size="lg">
           <template #label>
@@ -101,7 +102,12 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
           />
         </UFormField>
 
-        <UButton type="submit" size="lg" class="w-full justify-center">
+        <UButton
+          type="submit"
+          size="lg"
+          class="w-full justify-center"
+          :loading="loginReq.isPending.value"
+        >
           {{ $t("submit") }}
         </UButton>
       </UForm>

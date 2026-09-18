@@ -44,11 +44,12 @@ const permissionCheckboxUi = {
   label: "whitespace-normal break-words leading-5",
 } as const;
 
+const isSubmitting = computed(
+  () => createRoleReq.isPending.value || updateRoleReq.isPending.value,
+);
+
 const isLoading = computed(
-  () =>
-    isFetchingPermissions.value ||
-    createRoleReq.isPending.value ||
-    updateRoleReq.isPending.value,
+  () => isFetchingPermissions.value || isSubmitting.value,
 );
 
 const isUpdate = computed(() => !!props.item);
@@ -278,7 +279,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
           type="submit"
           size="lg"
           class="w-full justify-center"
-          :loading="createRoleReq.isPending.value"
+          :loading="isSubmitting"
           :disabled="isLoading"
         >
           {{ $t(isUpdate ? "updateRole" : "createRole") }}
