@@ -12,6 +12,7 @@ const router = useRouter();
 const route = useRoute();
 const loginReq = useLoginService();
 const { setTokens } = useAuth();
+const { clearProfile } = useAuthProfile();
 
 function getRedirectPath() {
   const redirect = route.query.redirect;
@@ -53,6 +54,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       email: data.email,
       password: data.password,
     });
+    clearProfile();
     setTokens(tokens);
     showSuccess(t("loginSuccessfully"));
     await router.push(getRedirectPath());

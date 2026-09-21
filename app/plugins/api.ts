@@ -17,6 +17,7 @@ function isErrorPayload(value: unknown): value is { message?: string } {
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig();
   const { accessToken, refreshToken, logout, setTokens } = useAuth();
+  const { clearProfile } = useAuthProfile();
   const { $i18n } = useNuxtApp();
 
   const api = axios.create({
@@ -48,6 +49,7 @@ export default defineNuxtPlugin(() => {
 
   const redirectToLogin = () => {
     logout();
+    clearProfile();
 
     if (import.meta.client) {
       window.location.replace(`${config.app.baseURL}login`);

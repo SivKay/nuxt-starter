@@ -8,12 +8,14 @@ const openLogoutModal = ref(false);
 const router = useRouter();
 const { showError } = useCToast();
 const { logout } = useAuth();
+const { clearProfile } = useAuthProfile();
 const logoutReq = useLogoutService();
 
 const onLogout = async () => {
   try {
     await logoutReq.mutateAsync();
     logout();
+    clearProfile();
     await router.push("/login");
   } catch (error: any) {
     showError(error?.message);

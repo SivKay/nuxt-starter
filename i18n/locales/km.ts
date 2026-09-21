@@ -67,6 +67,9 @@ export default {
   create: "បង្កើត",
   update: "កែប្រែ",
   read: "មើល",
+  toggleSidebar: "បើក ឬបិទរបារចំហៀង",
+  logout: "ចាកចេញ",
+  logoutConfirmation: "តើអ្នកប្រាកដថាចង់ចាកចេញមែនទេ?",
 
   permission: {
     CREDENTIAL: "ព័ត៌មានសម្ងាត់",

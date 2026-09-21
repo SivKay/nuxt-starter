@@ -67,6 +67,9 @@ export default {
   read: "Read",
   create: "Create",
   update: "Update",
+  toggleSidebar: "Toggle sidebar",
+  logout: "Log out",
+  logoutConfirmation: "Are you sure you want to log out?",
 
   permission: {
     CREDENTIAL: "Credential",

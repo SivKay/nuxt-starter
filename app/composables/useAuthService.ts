@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/vue-query";
+import { useMutation } from "@tanstack/vue-query";
 import AuthService from "~/services/authService";
 import type { IChangePasswordRequest, ILoginRequestBody } from "~/types/auth";
 
@@ -17,15 +17,6 @@ export function useChangePasswordService() {
     mutationKey: ["profile-change-password"],
     mutationFn: async (payload: IChangePasswordRequest) =>
       authService.changePassword(payload),
-  });
-}
-
-export function useProfileService() {
-  const authService = AuthService();
-
-  return useQuery({
-    queryKey: ["auth", "profile"],
-    queryFn: authService.getProfile,
   });
 }
 
