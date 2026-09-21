@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
   total: number;
-  pageSizeOptions?: number[];
 }>();
 
 const page = defineModel<number>("page", { required: true });
