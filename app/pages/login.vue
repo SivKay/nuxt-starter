@@ -14,6 +14,11 @@ const loginReq = useLoginService();
 const { setTokens } = useAuth();
 const { clearProfile } = useAuthProfile();
 
+const documentTitle = computed(() => t("login"));
+useHead({
+  title: documentTitle,
+});
+
 function getRedirectPath() {
   const redirect = route.query.redirect;
 

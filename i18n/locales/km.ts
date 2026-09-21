@@ -3,6 +3,7 @@ export default {
   continue: "បន្ត",
   language: "ភាសា",
   login: "ចូលគណនី",
+  adminPanel: "ផ្ទាំងគ្រប់គ្រងអ្នកគ្រប់គ្រង",
   pleaseEnterField: "សូមបញ្ចូល {0}",
   fieldIsRequired: "ត្រូវការបញ្ចូល {0}",
   email: "អ៊ីមែល",

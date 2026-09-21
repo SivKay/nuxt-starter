@@ -3,6 +3,7 @@ export default {
   continue: "Continue",
   language: "Language",
   login: "Login",
+  adminPanel: "Admin panel",
   pleaseEnterField: "Please enter {0}",
   fieldIsRequired: "{0} is required",
   email: "Email",
