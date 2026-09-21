@@ -14,13 +14,22 @@ const refreshTokenCookieOptions = {
 };
 
 export function useAuth() {
-  const accessToken = useCookie<string | null>(
+  const accessTokenCookie = useCookie<string | null>(
     COOKIE_KEYS.accessToken,
     accessTokenCookieOptions,
   );
-  const refreshToken = useCookie<string | null>(
+  const refreshTokenCookie = useCookie<string | null>(
     COOKIE_KEYS.refreshToken,
     refreshTokenCookieOptions,
+  );
+
+  const accessToken = useState<string | null>(
+    "auth-access-token",
+    () => accessTokenCookie.value ?? null,
+  );
+  const refreshToken = useState<string | null>(
+    "auth-refresh-token",
+    () => refreshTokenCookie.value ?? null,
   );
 
   const isAuthenticated = computed(() => Boolean(accessToken.value));
@@ -32,11 +41,15 @@ export function useAuth() {
   function setTokens(tokens: ILoginResponse) {
     accessToken.value = tokens.access_token;
     refreshToken.value = tokens.refresh_token;
+    accessTokenCookie.value = tokens.access_token;
+    refreshTokenCookie.value = tokens.refresh_token;
   }
 
   function clearTokens() {
     accessToken.value = null;
     refreshToken.value = null;
+    accessTokenCookie.value = null;
+    refreshTokenCookie.value = null;
   }
 
   function logout() {
