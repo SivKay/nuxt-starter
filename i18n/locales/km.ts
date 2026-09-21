@@ -35,6 +35,7 @@ export default {
   transactionType: "ប្រភេទប្រតិបត្តិការ",
   searchTransactions: "ស្វែងរកប្រតិបត្តិការ",
   showingRecords: "បង្ហាញ {0}-{1} នៃ {2}",
+  rowsPerPage: "ចំនួនជួរដេកក្នុងមួយទំព័រ",
   success: "ជោគជ័យ",
   pending: "កំពុងរង់ចាំ",
   failed: "បរាជ័យ",

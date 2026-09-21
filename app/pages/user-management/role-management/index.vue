@@ -175,6 +175,12 @@ const columns = computed<TableColumn<IRole>[]>(() => [
       </template>
     </UTable>
 
+    <CPagination
+      v-model:page="filter.page"
+      v-model:limit="filter.limit"
+      :total="data?.metadata.total_count ?? 0"
+    />
+
     <CConfirmModal
       v-model:open="deleteModalOpen"
       :title="$t('deleteRole')"

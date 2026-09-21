@@ -17,7 +17,7 @@ type TransactionRecord = {
 const { t, locale } = useI18n();
 const search = ref("");
 const page = ref(1);
-const limit = 5;
+const limit = ref(5);
 
 const records: TransactionRecord[] = [
   { transaction_id: "TXN-20250731-001", amount: 2_450, card_number: "**** **** **** 4821", transaction_type: "DEPOSIT", status: "SUCCESS", created_at: "2025-07-31T09:20:00", updated_at: "2025-07-31T09:21:12" },
@@ -51,18 +51,8 @@ const filteredRecords = computed(() => {
 });
 
 const paginatedRecords = computed(() => {
-  const start = (page.value - 1) * limit;
-  return filteredRecords.value.slice(start, start + limit);
-});
-
-const visibleRange = computed(() => {
-  if (filteredRecords.value.length === 0) return { from: 0, to: 0 };
-
-  const from = (page.value - 1) * limit + 1;
-  return {
-    from,
-    to: Math.min(from + limit - 1, filteredRecords.value.length),
-  };
+  const start = (page.value - 1) * limit.value;
+  return filteredRecords.value.slice(start, start + limit.value);
 });
 
 const currencyFormatter = computed(
@@ -77,7 +67,8 @@ const columns = computed<TableColumn<TransactionRecord>[]>(() => [
   {
     id: "number",
     header: t("id"),
-    cell: ({ row }) => getPaginationRowNumber(row.index, page.value, limit),
+    cell: ({ row }) =>
+      getPaginationRowNumber(row.index, page.value, limit.value),
   },
   { accessorKey: "transaction_id", header: t("transactionId") },
   { accessorKey: "amount", header: t("amount") },
@@ -106,10 +97,6 @@ watch(search, () => {
   page.value = 1;
 });
 
-watch(filteredRecords, (items) => {
-  const lastPage = Math.max(Math.ceil(items.length / limit), 1);
-  if (page.value > lastPage) page.value = lastPage;
-});
 </script>
 
 <template>
@@ -176,25 +163,11 @@ watch(filteredRecords, (items) => {
     </UTable>
 
     <template #footer>
-      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p class="text-sm text-muted">
-          {{
-            $t("showingRecords", [
-              visibleRange.from,
-              visibleRange.to,
-              filteredRecords.length,
-            ])
-          }}
-        </p>
-
-        <UPagination
-          v-model:page="page"
-          :total="filteredRecords.length"
-          :items-per-page="limit"
-          size="sm"
-          show-edges
-        />
-      </div>
+      <CPagination
+        v-model:page="page"
+        v-model:limit="limit"
+        :total="filteredRecords.length"
+      />
     </template>
   </UCard>
 </template>

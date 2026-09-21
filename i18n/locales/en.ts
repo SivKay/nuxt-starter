@@ -35,6 +35,7 @@ export default {
   transactionType: "Transaction type",
   searchTransactions: "Search transactions",
   showingRecords: "Showing {0}-{1} of {2}",
+  rowsPerPage: "Rows per page",
   success: "Success",
   pending: "Pending",
   failed: "Failed",
